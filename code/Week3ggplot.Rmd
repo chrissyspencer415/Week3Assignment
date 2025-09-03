@@ -1,39 +1,24 @@
 ---
-title: "ggplot-Code-Along"
+title: "ggplot-Week3-assignment"
 output: html_document
-author: Robbie Richards original, Chrissy Spencer edits
+author: Chrissy Spencer
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
-# Introduction to R and Tidyverse
-
-The core tidyverse includes the packages that you're likely to use in everyday data analyses. Let's explore some of the functions using a dataset of penguins in the Palmer Archipelago in Antarctica!
-
-You can execute lines of code by placing your cursor anywhere in that line and pressing *Cmd+Enter* or *Ctrl+Enter*.
-
-You can also execute entire chunks by clicking the *Run* button (green arrow) within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter* on a Mac or *Ctrl+Shift+Enter* on Windows. 
-
-A few other notes about R markdown:
-* Notice that R studio helps annotate your code's syntax with different colored text - comments, functions, numerical values, etc. will be highlighted.
-* It's also a good idea to add your own annotations or comments to your code to remind yourself and others what each line of code accomplishes - any code with a `#` preceding it will not be "seen" or run within a chunk.
-* It's common practice to provide certain information at the top of any R script or Rmd file: title/purpose, author name, and date
-
-With that, let's dive into the exercise! First, we will install the tidyverse packages:
-
+# Exercise after Introduction to R and Tidyverse
 
 
 ```{r install tidyverse}
-
 
 #install.packages("tidyverse")
 
 ```
 
 
-Next we'll load the tidyverse suite of packages
+Code chunk to load the tidyverse suite of packages
 
 ```{r load packages}
 
@@ -44,28 +29,33 @@ library(tidyverse)
 
 ```
 
-Now we will load our data and check out some of the observations.
+Write a code chunk that:
+-	Reads in socialMediaAddiction.csv to a variable called socialMedia
+-	Produces a “glimpse” of the dataset
+
 
 In this code along session, Palmer Penguins dataset where each observation is a penguin captured in a given year and each variable is a feature such as "species", "sex" and "body_mass_g". We will be exploring this data using tidyverse with a focus on [dplyr](http://dplyr.tidyverse.org/) for data wrangling, visualize it with [ggplot2](https://ggplot2.tidyverse.org/), and analyze it using the skills you've already developed!
 
 Load your data:
 
 ```{r}
-# Load the penguins dataset
-# Dataset must be saved in the same place as your .Rmd to load data properly
+# Load the socialMediaAddiction dataset
+# Dataset saved in the same place as .Rmd to load data properly
 
-penguins <- read_csv("penguins.csv")
-# in RMD you don't have to indicate the file location!
+socialMediaAddiction <- read_csv("../data/socialMediaAddiction.csv")
+
+# in RMD you don't have to indicate the file location but 
+# use ../data/ to go up a folder and then into the data folder
 # Check out a "glimpse" of the variables of your dataframe
-glimpse(penguins)
-penguins
-# generates a tibble of penguins
+glimpse(socialMediaAddiction)
+socialMediaAddiction
+# generates a tibble of socialMediaAddiction
 
 ```
+Reviewed the dataset glimpse against the metadata provided 
 
-
-# Introduction to Data Visualization with ggplot2
-
+# Data Visualization with ggplot2
+Step 4: You will be working with a number of quantitative variables in this dataset. Histograms are useful to understand the distribution of quantitative variables. Choose two continuous variables and create a code chunk that produces a histogram of each variable. 
 
 
 * In this exercise you'll learn how to easily and intuitively plot your data using `ggplot2`.
