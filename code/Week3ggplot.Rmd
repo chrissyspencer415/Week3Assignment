@@ -55,10 +55,31 @@ socialMediaAddiction
 Reviewed the dataset glimpse against the metadata provided 
 
 # Data Visualization with ggplot2
-Step 4: You will be working with a number of quantitative variables in this dataset. Histograms are useful to understand the distribution of quantitative variables. Choose two continuous variables and create a code chunk that produces a histogram of each variable. 
+Generate histograms for two continuous variables and create a code chunk that produces a histogram of each variable. 
 
+Create a code chunk with opt-cmd-I
+```{r histogram}
+socialMediaAddiction %>%
+  ggplot(mapping = aes(x = Avg_Daily_Usage_Hours)) +
+  geom_histogram()
 
-* In this exercise you'll learn how to easily and intuitively plot your data using `ggplot2`.
+socialMediaAddiction %>%
+  ggplot(mapping = aes(x = Mental_Health_Score)) +
+  geom_histogram()
+
+socialMediaAddiction %>%
+  ggplot(mapping = aes(x = Sleep_Hours_Per_Night)) +
+  geom_histogram()
+```
+QUESTION: is there a way to tab back and forth between graphs like in the Plots window? 
+ANSWER: run full code chunk at once to get thumbnails for each histogram and tab between them.
+
+# Describe the shape of each histogram
+Avg_Daily_Usage_Hours is a normal-shaped distribution with some very jagged spots around 4.5 and 5 hours of daily social media usage (omg this is LOT of social media)
+
+Mental_Health_Score is a discrete score with 1 = poor to 10 = excellent that might be skewed left with a tail to the right. No one selected low scores below 4, no one is a 10 and very few are 9s.
+
+Sleep_Hours_Per_Night ranges from less than 4 to nearly 10 and looks roughly normal.
 
 
 ## Plotting your data
