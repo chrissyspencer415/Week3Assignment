@@ -1,0 +1,191 @@
+---
+title: "ggplot-Code-Along"
+output: html_document
+author: Robbie Richards original, Chrissy Spencer edits
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+```
+
+# Introduction to R and Tidyverse
+
+The core tidyverse includes the packages that you're likely to use in everyday data analyses. Let's explore some of the functions using a dataset of penguins in the Palmer Archipelago in Antarctica!
+
+You can execute lines of code by placing your cursor anywhere in that line and pressing *Cmd+Enter* or *Ctrl+Enter*.
+
+You can also execute entire chunks by clicking the *Run* button (green arrow) within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter* on a Mac or *Ctrl+Shift+Enter* on Windows. 
+
+A few other notes about R markdown:
+* Notice that R studio helps annotate your code's syntax with different colored text - comments, functions, numerical values, etc. will be highlighted.
+* It's also a good idea to add your own annotations or comments to your code to remind yourself and others what each line of code accomplishes - any code with a `#` preceding it will not be "seen" or run within a chunk.
+* It's common practice to provide certain information at the top of any R script or Rmd file: title/purpose, author name, and date
+
+With that, let's dive into the exercise! First, we will install the tidyverse packages:
+
+
+
+```{r install tidyverse}
+
+
+#install.packages("tidyverse")
+
+```
+
+
+Next we'll load the tidyverse suite of packages
+
+```{r load packages}
+
+# use the library function to load dplyr, tidyr, palmerpenguins, and ggplot2
+
+library(tidyverse)
+
+
+```
+
+Now we will load our data and check out some of the observations.
+
+In this code along session, Palmer Penguins dataset where each observation is a penguin captured in a given year and each variable is a feature such as "species", "sex" and "body_mass_g". We will be exploring this data using tidyverse with a focus on [dplyr](http://dplyr.tidyverse.org/) for data wrangling, visualize it with [ggplot2](https://ggplot2.tidyverse.org/), and analyze it using the skills you've already developed!
+
+Load your data:
+
+```{r}
+# Load the penguins dataset
+# Dataset must be saved in the same place as your .Rmd to load data properly
+
+penguins <- read_csv("penguins.csv")
+# in RMD you don't have to indicate the file location!
+# Check out a "glimpse" of the variables of your dataframe
+glimpse(penguins)
+penguins
+# generates a tibble of penguins
+
+```
+
+
+# Introduction to Data Visualization with ggplot2
+
+
+
+* In this exercise you'll learn how to easily and intuitively plot your data using `ggplot2`.
+
+
+## Plotting your data
+
+To plot your data using `ggplot2`, you specify three things:
+
+* Your data (`penguins`)
+* Your aesthetics (e.g. at minimium what's on the x-axis)
+* Your layers (e.g. boxplot, scatterplot)
+
+
+First you'll make a *histogram* to understand the distribution of penguin weights in your data. Histograms are used when you want to visualize the distribution of a single variable in your dataset.
+
+```{r histogram}
+# Plot a histogram of penguin weight
+# using pipe syntax of %>% or 
+# = also called "gets"
+penguins %>%
+  ggplot(mapping = aes(x = body_mass_g)) +
+  geom_histogram()
+# used two different connectors, pipe and pluses to add features
+# this is dumb to have two different connectors but its too cumbersome to fix
+# look for output in the rmd file!
+
+
+```
+
+
+
+Next you'll plot a boxplot of body mass by Sex to see how the body mass of male and female penguins differ. 
+
+
+```{r boxplot}
+
+# Plot boxplot of body mass by penguin Sex
+penguins %>%
+  ggplot(mapping = aes(x=sex, y=body_mass_g))+
+  geom_boxplot()
+  
+# Plot boxplot of body mass by penguin species
+penguins %>%
+  ggplot(mapping = aes(x=species, y=body_mass_g))+
+  geom_boxplot()
+
+  
+
+# Plot boxplot of body mass by penguin Sex separated by species
+penguins %>%
+  ggplot(mapping = aes(x=species, y=body_mass_g))+
+  geom_boxplot()+
+  facet_wrap(~sex)
+
+penguins %>%
+  ggplot(mapping = aes(x=species, y=body_mass_g, color = sex))+
+  geom_boxplot()
+  
+penguins %>%
+  ggplot(mapping = aes(x=species, y=body_mass_g, fill = sex))+
+  geom_boxplot()
+
+
+```
+
+**What can you see here?** 
+
+**Note:**
+
+*  the `aes()` function is really a way to map the `aes`thetics of the plot to the variables in the data. See [Modern Dive](http://moderndive.com/3-viz.html#grammarofgraphics) by Chester Ismay & Albert Y. Kim for more.
+
+
+Now it's time for some scatter plots. Is the bill length of a penguin associated with penguin weight? What if we separate our data by species?
+
+
+```{r scatterplot}
+
+# Scatterplot of bill length and weight
+penguins %>%
+  ggplot(mapping = aes(x=bill_length_mm,y=body_mass_g))+
+  geom_point()+
+  geom_smooth(method = lm)
+#smooth generates a lowess fcn, add method to make it streight line
+
+
+
+# Scatterplot of bill length faceted by penguin species
+
+
+
+```
+
+**What can you see here?** 
+
+**Note:**
+
+* You can read your `ggplot2` code like a sentence, just like your `dplyr` code above: "We take the data as penguins and we map bill length to the x axis and weight to the y axis, adding points on as the layer of the plot."
+
+
+**Recap:**
+
+
+
+## Exercise (Time-Permitting)
+
+We will now use some of the skills we've just learnt to answer a our own questions! 
+
+As a group: 
+
+1.  Develop a question that can be answered with the `penguins` dataset. 
+2.  Talk through how the data needs to be manipulated to get the appropriate answer. Would plotting the data be useful? Which verbs will you use and in what order? 
+3.  Write the code for the analysis. Designate a computer that will have the completed code. If you are not actively typing, you can help your group by thinking about what should come next or proof reading what has already been typed. Be sure to test your code often. 
+
+
+```{r}
+
+# Write your analysis here
+
+
+
+
+```
